@@ -13,14 +13,19 @@ body {
 
 /* Container for Page2 */
 .page2-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 20px;
-  background-color: #f5f5f5; /* Light background color */
   position: relative;
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  background-color: #f5f5f5;
+
+   /* Double border effect */
+   border: 5px solid black;
+   padding: 15px;
+   border-radius: 10px;
+   box-shadow: inset 0px 0px 0px 5px red;
 }
 
 /* Watermark */
@@ -29,17 +34,16 @@ body {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%; /* Full width for visibility */
-  max-width: 300px; /* Maximum width */
-  opacity: 0.1; /* Transparency */
-  z-index: 0; /* Ensure it’s behind the table */
-  pointer-events: none; /* Ensure it doesn’t block interactions */
+  width: 100%;
+  max-width: 300px;
+  opacity: 0.1;
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* Table Styling */
 .assessment-table {
   width: 100%;
-  max-width: 1200px;
   border-collapse: collapse;
   margin-bottom: 20px;
   background-color: #fff;
@@ -47,18 +51,19 @@ body {
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
-  z-index: 1; /* Ensure table is above watermark */
+  z-index: 1;
 }
 
 .assessment-table thead th {
-  background-color: purple; /* Dark Red for header */
+  background-color: purple;
   color: white;
   font-weight: bold;
-  border: 2px solid #000; /* Black border */
+  border: 2px solid #000;
+  text-align: left;
 }
 
 .assessment-table tbody tr {
-  border: 2px solid #000; /* Black border */
+  border: 2px solid #000;
   background-color: #f9f9f9;
 }
 
@@ -67,15 +72,23 @@ body {
 }
 
 .assessment-table td, .assessment-table th {
-  border: 2px solid #000; /* Black border */
-  padding: 15px;
+  border: 2px solid #000;
+  padding: 10px;
   text-align: left;
+  word-wrap: break-word;
+  font-size: 1rem;
+}
+
+/* Ensure content breaks properly for long texts */
+.assessment-table td {
+  white-space: normal; /* Force long content to wrap within cells */
+  word-break: break-word; /* Break long words to avoid overflow */
 }
 
 /* Button Styling */
 .start-form-btn {
   padding: 12px 24px;
-  background-color: purple; /* Dark Red */
+  background-color: purple;
   color: white;
   border: none;
   border-radius: 10px;
@@ -87,20 +100,46 @@ body {
 }
 
 .start-form-btn:hover {
-  background-color: #ff5722; /* Bright Red for hover effect */
+  background-color: #ff5722;
   transform: scale(1.05);
 }
 
+/* Responsive Adjustments */
+
+/* For Medium Screens (768px and below) */
 @media (max-width: 768px) {
-  .start-form-btn {
-      padding: 10px 20px;
-      font-size: 1rem;
+  .assessment-table td, .assessment-table th {
+    padding: 8px;
+    font-size: 0.9rem;
   }
+
+  .start-form-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  /* .page2-container {
+    padding: 10px;
+  } */
 }
 
+/* For Small Screens (480px and below) */
 @media (max-width: 480px) {
+  /* .page2-container {
+    padding: 5px;
+  } */
+
+  .assessment-table td, .assessment-table th {
+    padding: 5px;
+    font-size: 0.8rem; /* Reduce font size to fit in smaller screens */
+  }
+
+  .assessment-table th {
+    font-size: 0.85rem; /* Reduce font size for headers */
+  }
+
   .start-form-btn {
-      padding: 8px 16px;
-      font-size: 0.9rem;
+    padding: 8px 16px;
+    font-size: 0.9rem;
   }
 }

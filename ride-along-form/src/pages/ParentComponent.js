@@ -89,7 +89,6 @@ const ParentComponent = () => {
           onPrevious={() => setCurrentPage(4)} // Link back to RiderAssessment
         />
       )}
-      {console.log("formData final testing:", JSON.stringify(formData))}
       {currentPage === 6 && (
         <ReviewPage
           formData={formData}
