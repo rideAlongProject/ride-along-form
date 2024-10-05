@@ -73,26 +73,24 @@ const Page2 = ({ onNext, onPrevious }) => {
     <div className="page2-container">
       <img src={waterMark} alt="Watermark" className="watermark" />  
       <h1 className="form-heading">Vehicle Assessment</h1>
-      <div className='assessment-table-container'>
-        <table className="assessment-table">
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>Vehicle Assessment</th>
-              <th>Assessment Guidelines for Line Manager</th>
+      <table className="assessment-table">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Vehicle Assessment</th>
+            <th>Assessment Guidelines for Line Manager</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tableContent.map((row) => (
+            <tr key={row.id}>
+              <td>{row.id}</td>
+              <td>{row.assessment}</td>
+              <td>{row.guidelines}</td>
             </tr>
-          </thead>
-          <tbody>
-            {tableContent.map((row) => (
-              <tr key={row.id}>
-                <td>{row.id}</td>
-                <td>{row.assessment}</td>
-                <td>{row.guidelines}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
       {/* <button className="start-form-btn">Start Form</button> */}
       <button className="start-form-btn" onClick={onNext}>
         Start Form
