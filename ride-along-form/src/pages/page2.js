@@ -13,7 +13,7 @@ const Page2 = ({ onNext, onPrevious }) => {
         },
         {
           id: 2,
-          assessment: 'How is the threading condition of the tyres? Are there any cuts?',
+          assessment: 'How is the treading condition of the tyres? Are there any cuts?',
           guidelines: 'Check the tyre thoroughly by inspecting the tread depth. Spin the wheel slowly and check for cuts, splits, bulges, or worn fabric.'
         },
         {
@@ -72,7 +72,7 @@ const Page2 = ({ onNext, onPrevious }) => {
   return (
     <div className="page2-container">
       <img src={waterMark} alt="Watermark" className="watermark" />  
-      <h1 className="form-heading">Vehicle Assessment</h1>
+      <h1 className="form-heading">ASSESSMENT GUIDELINES</h1>
       <table className="assessment-table">
         <thead>
           <tr>

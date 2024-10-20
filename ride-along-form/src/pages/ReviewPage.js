@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import './ReviewPage.css';
 import jsPDF from 'jspdf'; // Library for generating PDFs
 
-const ReviewPage = ({ formData }) => {
+const ReviewPage = ({ formData, onNext, onPrevious }) => {
   const reviewRef = useRef(); // Ref to target the review content for printing/PDF
 
   // Helper functions to handle default values dynamically
@@ -58,7 +58,7 @@ const ReviewPage = ({ formData }) => {
         { label: 'Name', key: 'name' },
         { label: 'Team', key: 'team' },
         { label: 'Line Man', key: 'lineMan' },
-        { label: 'Are you a new joinee?', key: 'newJoinee', defaultAnswer: 'No' }
+        // { label: 'Are you a new joinee?', key: 'newJoinee', defaultAnswer: 'No' }
       ]
     },
     {
@@ -66,7 +66,7 @@ const ReviewPage = ({ formData }) => {
       data: formData.vehicleAssessment,
       questions: [
         "Is the Vehicle Tyre Pressure correct?",
-        "How is the threading condition of the tyres?",
+        "How is the treading condition of the tyres?",
         "Is the speedometer functioning properly?",
         "Is the fuel meter functioning properly?",
         "Are both mirrors present? Is it positioned properly as per rider's eye line?",
@@ -83,18 +83,21 @@ const ReviewPage = ({ formData }) => {
       title: 'Rider Assessment',
       data: formData.riderAssessment,
       questions: [
-        "Does the rider have a valid driving license?",
-        "Is the rider wearing a helmet?",
-        "Is the helmet properly fastened?",
-        "Is the rider wearing appropriate footwear?",
-        "Is the rider wearing a reflective jacket?",
-        "Is the rider fit to drive (e.g., not tired, intoxicated, etc.)?",
-        "Does the rider have a valid insurance policy for the vehicle?",
-        "Is the rider familiar with the route?",
-        "Does the rider have a mobile phone for communication?",
-        "Is the rider adhering to traffic rules and signals?",
-        "Is the rider aware of vehicle speed limits?",
-        "Does the rider know emergency contact numbers in case of accidents?"
+        "Does the rider use hand signal/indicator while taking a turn?",
+        "Does the rider overtake from the correct side?",
+        "Does the rider wear shoes with a well-defined heel while riding?",
+        "Is the rider sleepy while riding?",
+        "Does the rider stop at traffic signals?",
+        "Does the rider use a mobile phone while riding?",
+        "Does the rider follow legal speed limits?",
+        "Is the rider’s sitting posture correct? Check the position of hands, elbows, knees, and thighs.",
+        "Does the rider make way for an ambulance?",
+        "Is the rider courteous to other road users?",
+        "Has the rider attended the Safe Rider Programme? Date:",
+        "Does the rider wear an AZ Helmet with the strap buckled?",
+        "Is the helmet in good condition?",
+        "Does the rider wear an AZ Jacket?",
+        "Is the jacket in good condition?"
       ]
     },
     {
@@ -224,6 +227,7 @@ const ReviewPage = ({ formData }) => {
     // Proceed with the mailto and PDF submission logic
     const mailToLink = `mailto:akhilxtel@gmail.com?subject=Ride Along Form Submission&body=${emailBody}`;
     window.location.href = mailToLink; // This will open the default email client with the populated body
+    onNext();
   };
   
 

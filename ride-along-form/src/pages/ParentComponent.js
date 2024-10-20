@@ -7,6 +7,7 @@ import RiderAssessment from './RiderAssessment';
 import VehicleAssessment from './VehicleAssessment';
 import VehicleDetails from './VehicleDetails';
 import ReviewPage from './ReviewPage'; // Import the ReviewPage component
+import ThankYou from './ThankYou';
 
 const ParentComponent = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -92,9 +93,11 @@ const ParentComponent = () => {
       {currentPage === 6 && (
         <ReviewPage
           formData={formData}
-          onPrevious={() => setCurrentPage(5)} // Link back to VehicleDetails
+          onPrevious={() => setCurrentPage(5)}
+          onNext={() => setCurrentPage(7)} // Link back to VehicleDetails
         />
       )}
+      {currentPage === 7 && <ThankYou/>} 
     </div>
   );
 };
