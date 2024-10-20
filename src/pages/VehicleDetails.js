@@ -47,7 +47,30 @@ const VehicleDetails = ({ formData, handleFormChange, onNext, onPrevious }) => {
   useEffect(() => {
     // Scroll to top of the page when component mounts
     window.scrollTo(0, 0);
-  }, []);
+  },[]);
+
+  useEffect(() => {
+
+    // Set default for primary vehicle if not already set
+    if (!formData.vehicleDetails.primaryVehicle) {
+      handleFormChange('vehicleDetails', 'primaryVehicle', '2 Wheeler');
+    }
+
+    // Set default for secondary vehicle if not already set
+    if (formData.vehicleDetails.useSecondaryVehicle === 'Yes' && !formData.vehicleDetails.secondaryVehicle) {
+      handleFormChange('vehicleDetails', 'secondaryVehicle', '2 Wheeler');
+    }
+
+    // Set default for primary vehicle fuel Type if not already set
+    if (!formData.vehicleDetails.fuelType) {
+      handleFormChange('vehicleDetails', 'fuelType', 'Petrol');
+    }
+
+    // Set default for primary vehicle if not already set
+    if (formData.vehicleDetails.useSecondaryVehicle === 'Yes' && !formData.vehicleDetails.secondaryVehicleFuelType) {
+      handleFormChange('vehicleDetails', 'secondaryVehicleFuelType', 'Petrol');
+    }
+  }, [formData.vehicleDetails, handleFormChange]);
 
   const handleSubmit = () => {
     setFormSubmitted(true);

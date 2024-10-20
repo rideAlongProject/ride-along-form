@@ -17,19 +17,16 @@ body {
   justify-content: center;
   height: 100vh; /* Full viewport height */
   padding: 0 20px;
-  /* background: linear-gradient(135deg, #f3ec78, #af4261);  */
   overflow: hidden; /* Prevent scrolling */
 }
 
 .center-image {
   width: 80%;
-  height: auto;
-  max-width: 350px;
   margin-bottom: 20px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   border-radius: 15px;
-  transition: transform 0.3s ease; /* Smooth scaling */
-  animation: imagePulse 8s infinite; /* Animation added here for continuous scaling */
+  transition: transform 0.3s ease; 
+  animation: imagePulse 8s infinite; 
 }
 
 @keyframes imagePulse {
@@ -37,7 +34,7 @@ body {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.05); /* Slight zoom-in */
+    transform: scale(1.05); 
   }
   100% {
     transform: scale(1);
@@ -72,7 +69,7 @@ body {
 /* Media query for tablets */
 @media (min-width: 768px) {
   .center-image {
-    max-width: 450px;
+    /* max-width: 450px; */
     margin-bottom: 30px;
   }
 
@@ -85,12 +82,12 @@ body {
 /* Media query for desktops */
 @media (min-width: 1024px) {
   .center-image {
-    max-width: 550px;
+    /* max-width: 530px !important; */
   }
 
   .start-assignment-btn {
     font-size: 22px;
-    padding: 25px 50px;
+    padding: 27px 38px;
   }
 }
 

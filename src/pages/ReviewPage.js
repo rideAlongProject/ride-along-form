@@ -104,12 +104,16 @@ const ReviewPage = ({ formData, onNext, onPrevious }) => {
       title: 'Vehicle Details',
       data: formData.vehicleDetails,
       questions: [
+        { label: 'Primary Vehicle', key: 'primaryVehicle', defaultAnswer: '2 Wheeler' }, 
+        { label: 'Fuel Type', key: 'fuelType' }, 
         { label: 'Primary Vehicle Number', key: 'primaryVehicleNumber' },
         { label: 'Primary Vehicle Manufacturer', key: 'primaryVehicleManufacturer' },
         { label: 'Primary Vehicle Model', key: 'primaryVehicleModel' },
         { label: 'Do you use a secondary vehicle for field of work?', key: 'useSecondaryVehicle', defaultAnswer: 'No' }
       ],
       secondaryQuestions: formData.vehicleDetails && formData.vehicleDetails.useSecondaryVehicle === 'Yes' ? [
+        { label: 'Secondary Vehicle', key: 'secondaryVehicle', defaultAnswer: '2 Wheeler' }, 
+        { label: 'Fuel Type', key: 'secondaryVehicleFuelType' }, 
         { label: 'Secondary Vehicle Number', key: 'secondaryVehicleNumber' },
         { label: 'Secondary Vehicle Manufacturer', key: 'secondaryVehicleManufacturer' },
         { label: 'Secondary Vehicle Model', key: 'secondaryVehicleModel' }
