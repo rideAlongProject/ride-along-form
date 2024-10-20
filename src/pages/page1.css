@@ -103,8 +103,7 @@ body {
   }
 
   .center-image {
-    width: 60%;
-    max-width: 200px;
+    width: 90%;
     margin-bottom: 15px;
     animation: imagePulseMobile 8s infinite; /* Applying the animation specifically for mobile */
   }

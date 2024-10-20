@@ -10,7 +10,7 @@ const VehicleAssessment = ({ formData, handleFormChange, onNext, onPrevious }) =
 
   const questions = [
     "Is the Vehicle Tyre Pressure correct? Instruct the employee to check tyre pressure at a fuel station and ensure the air is filled according to the manufacturer’s instructions.",
-    "How is the threading condition of the tyres? Are there any cuts?",
+    "How is the treading condition of the tyres? Are there any cuts?",
     "Is the speedometer functioning properly?",
     "Is the fuel meter functioning properly?",
     "Are both mirrors present? Is it positioned properly as per rider's eye line?",
@@ -52,7 +52,7 @@ const VehicleAssessment = ({ formData, handleFormChange, onNext, onPrevious }) =
     <div className="vehicle-assessment-container">
       <h1 className='main-heading'>TWO WHEELER RIDE ALONG FORM</h1>
       <NavigationSteps currentStep="vehicleAssessment" />
-      <div className="mandatory-question-container">
+      {/* <div className="mandatory-question-container">
         <div className="mandatory-question-text">
           <strong>Are you a new joinee or existing employee?</strong>
         </div>
@@ -77,7 +77,7 @@ const VehicleAssessment = ({ formData, handleFormChange, onNext, onPrevious }) =
             New Joinee
           </label>
         </div>
-      </div>
+      </div> */}
 
       <div className="watermark">
         <img src={watermark} alt="Watermark" />
@@ -129,7 +129,7 @@ const VehicleAssessment = ({ formData, handleFormChange, onNext, onPrevious }) =
             {showAlerts && !formData.team && <span className="alert">This field is mandatory</span>}
           </div>
           <div className="form-group">
-            <label>Line Mgr:</label>
+            <label>Line Manager:</label>
             <input
               type="text"
               name="lineMan"

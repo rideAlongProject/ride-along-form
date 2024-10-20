@@ -7,6 +7,8 @@ const VehicleDetails = ({ formData, handleFormChange, onNext, onPrevious }) => {
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
   const [showSecondaryVehicle, setShowSecondaryVehicle] = useState(formData.vehicleDetails.useSecondaryVehicle === 'Yes');
   const [formSubmitted, setFormSubmitted] = useState(false); // Track if form is submitted
+  const [fuelTypeOptions, setFuelTypeOptions] = useState(['Petrol', 'EV']); // State to manage primary vehicle fuel options
+  const [secondaryFuelTypeOptions, setSecondaryFuelTypeOptions] = useState(['Petrol', 'EV']); // State to manage secondary vehicle fuel options
 
   const handleCheckboxChange = (e) => {
     setIsCheckboxChecked(e.target.checked);
@@ -14,6 +16,13 @@ const VehicleDetails = ({ formData, handleFormChange, onNext, onPrevious }) => {
 
   const handleFieldChange = (e, field) => {
     const { value } = e.target;
+
+    // Update fuel options dynamically based on primary vehicle selection
+    if (field === 'primaryVehicle') {
+      const newFuelOptions = value === '2 Wheeler' ? ['Petrol', 'EV'] : ['Petrol', 'Diesel', 'EV'];
+      setFuelTypeOptions(newFuelOptions);
+    }
+
     handleFormChange('vehicleDetails', field, value);
   };
 
@@ -21,6 +30,18 @@ const VehicleDetails = ({ formData, handleFormChange, onNext, onPrevious }) => {
     const { value } = e.target;
     handleFieldChange(e, 'useSecondaryVehicle');
     setShowSecondaryVehicle(value === 'Yes');
+  };
+
+  const handleSecondaryFieldChange = (e, field) => {
+    const { value } = e.target;
+
+    // Update fuel options dynamically based on secondary vehicle selection
+    if (field === 'secondaryVehicle') {
+      const newFuelOptions = value === '2 Wheeler' ? ['Petrol', 'EV'] : ['Petrol', 'Diesel', 'EV'];
+      setSecondaryFuelTypeOptions(newFuelOptions);
+    }
+
+    handleFormChange('vehicleDetails', field, value);
   };
 
   useEffect(() => {
@@ -46,7 +67,7 @@ const VehicleDetails = ({ formData, handleFormChange, onNext, onPrevious }) => {
       label: 'Fuel Type',
       type: 'dropdown',
       name: 'fuelType',
-      options: ['Petrol', 'Diesel'],
+      options: fuelTypeOptions, // Use the dynamically updated fuel type options
     },
     {
       label: 'Vehicle Number ',
@@ -64,7 +85,7 @@ const VehicleDetails = ({ formData, handleFormChange, onNext, onPrevious }) => {
       name: 'primaryVehicleModel',
     },
     {
-      label: 'Do you use a secondary vehicle for field of work?',
+      label: 'Do you use a Secondary Vehicle for field of work?',
       type: 'radio',
       name: 'useSecondaryVehicle',
       options: ['Yes', 'No'],
@@ -82,7 +103,7 @@ const VehicleDetails = ({ formData, handleFormChange, onNext, onPrevious }) => {
       label: 'Fuel Type',
       type: 'dropdown',
       name: 'secondaryVehicleFuelType',
-      options: ['Petrol', 'Diesel'],
+      options: secondaryFuelTypeOptions, // Use dynamically updated secondary vehicle fuel type options
     },
     {
       label: 'Secondary Vehicle Number',
@@ -165,7 +186,7 @@ const VehicleDetails = ({ formData, handleFormChange, onNext, onPrevious }) => {
                     <select
                       name={question.name}
                       value={formData.vehicleDetails[question.name] || question.options[0]}
-                      onChange={(e) => handleFieldChange(e, question.name)}
+                      onChange={(e) => handleSecondaryFieldChange(e, question.name)}
                       className="form-dropdown"
                     >
                       {question.options.map((option, idx) => (
@@ -180,7 +201,7 @@ const VehicleDetails = ({ formData, handleFormChange, onNext, onPrevious }) => {
                       type="text"
                       name={question.name}
                       value={formData.vehicleDetails[question.name] || ''}
-                      onChange={(e) => handleFieldChange(e, question.name)}
+                      onChange={(e) => handleSecondaryFieldChange(e, question.name)}
                       className="form-input"
                     />
                   )}

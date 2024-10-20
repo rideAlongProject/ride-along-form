@@ -2,22 +2,24 @@ import React, {useEffect} from 'react';
 import './RiderAssessment.css';
 import watermark from '../assets/waterMark.png';
 import NavigationSteps from './NavigationSteps';
-import ReDark from '../assets/ReDark.png'; // Path to your bike logo
 
 const RiderAssessment = ({ formData, handleFormChange, onNext, onPrevious }) => {
   const questions = [
-    "Does the rider have a valid driving license?",
-    "Is the rider wearing a helmet?",
-    "Is the helmet properly fastened?",
-    "Is the rider wearing appropriate footwear?",
-    "Is the rider wearing a reflective jacket?",
-    "Is the rider fit to drive (e.g., not tired, intoxicated, etc.)?",
-    "Does the rider have a valid insurance policy for the vehicle?",
-    "Is the rider familiar with the route?",
-    "Does the rider have a mobile phone for communication?",
-    "Is the rider adhering to traffic rules and signals?",
-    "Is the rider aware of vehicle speed limits?",
-    "Does the rider know emergency contact numbers in case of accidents?"
+    "Does the rider use hand signal/indicator while taking a turn?",
+    "Does the rider overtake from the correct side?",
+    "Does the rider wear shoes with a well-defined heel while riding?",
+    "Is the rider sleepy while riding?",
+    "Does the rider stop at traffic signals?",
+    "Does the rider use a mobile phone while riding?",
+    "Does the rider follow legal speed limits?",
+    "Is the rider’s sitting posture correct? Check the position of hands, elbows, knees, and thighs.",
+    "Does the rider make way for an ambulance?",
+    "Is the rider courteous to other road users?",
+    "Has the rider attended the Safe Rider Programme? Date:",
+    "Does the rider wear an AZ Helmet with the strap buckled?",
+    "Is the helmet in good condition?",
+    "Does the rider wear an AZ Jacket?",
+    "Is the jacket in good condition?"
   ];
 
   useEffect(() => {
@@ -42,7 +44,6 @@ const RiderAssessment = ({ formData, handleFormChange, onNext, onPrevious }) => 
       <div className="watermark">
         <img src={watermark} alt="Watermark" />
       </div>
-      {/* <img src={ReDark} alt="Bike Logo" className="bike-animation" /> */}
       <form>
         {questions.map((question, index) => (
           <div key={index} className="question-container">
