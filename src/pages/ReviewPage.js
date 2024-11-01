@@ -177,10 +177,135 @@ const ReviewPage = ({ formData, onNext, onPrevious }) => {
   
     doc.save('review-submission.pdf'); // Save and download the PDF
   };
+
+  // Utility function to process formData and generate a key-value object
+const prepareDataForGoogleSheets = (formData) => {
+  const result = {};
+
+  // Define the sections array, using the same structure as in ReviewPage
+  const sections = [
+    {
+      title: 'Mandatory Information',
+      data: formData,
+      questions: [
+        { label: 'Date', key: 'date' },
+        { label: 'HQ', key: 'hq' },
+        { label: 'Name', key: 'name' },
+        { label: 'Team', key: 'team' },
+        { label: 'Line Man', key: 'lineMan' }
+      ]
+    },
+    {
+      title: 'Vehicle Assessment',
+      data: formData.vehicleAssessment,
+      questions: [
+        "Is the Vehicle Tyre Pressure correct?",
+        "How is the treading condition of the tyres?",
+        "Is the speedometer functioning properly?",
+        "Is the fuel meter functioning properly?",
+        "Are both mirrors present? Is it positioned properly as per rider's eye line?",
+        "Do the front and rear brakes function properly?",
+        "Is the horn functioning properly?",
+        "Is the auto/kick starter functioning properly?",
+        "Is the vehicle key in good condition? Check for any bend or rust.",
+        "How is the seat condition of the vehicle? Is there any damage/cuts?",
+        "Is the main stand & side stand functioning properly?",
+        "Are the number plates of the vehicle clearly visible?"
+      ]
+    },
+    {
+      title: 'Rider Assessment',
+      data: formData.riderAssessment,
+      questions: [
+        "Does the rider use hand signal/indicator while taking a turn?",
+        "Does the rider overtake from the correct side?",
+        "Does the rider wear shoes with a well-defined heel while riding?",
+        "Is the rider sleepy while riding?",
+        "Does the rider stop at traffic signals?",
+        "Does the rider use a mobile phone while riding?",
+        "Does the rider follow legal speed limits?",
+        "Is the rider’s sitting posture correct? Check the position of hands, elbows, knees, and thighs.",
+        "Does the rider make way for an ambulance?",
+        "Is the rider courteous to other road users?",
+        "Has the rider attended the Safe Rider Programme? Date:",
+        "Does the rider wear an AZ Helmet with the strap buckled?",
+        "Is the helmet in good condition?",
+        "Does the rider wear an AZ Jacket?",
+        "Is the jacket in good condition?"
+      ]
+    },
+    {
+      title: 'Vehicle Details',
+      data: formData.vehicleDetails,
+      questions: [
+        { label: 'Primary Vehicle', key: 'primaryVehicle', defaultAnswer: '2 Wheeler' },
+        { label: 'Fuel Type', key: 'fuelType' },
+        { label: 'Primary Vehicle Number', key: 'primaryVehicleNumber' },
+        { label: 'Primary Vehicle Manufacturer', key: 'primaryVehicleManufacturer' },
+        { label: 'Primary Vehicle Model', key: 'primaryVehicleModel' },
+        { label: 'Do you use a secondary vehicle for field of work?', key: 'useSecondaryVehicle', defaultAnswer: 'No' }
+      ],
+      secondaryQuestions: formData.vehicleDetails && formData.vehicleDetails.useSecondaryVehicle === 'Yes' ? [
+        { label: 'Secondary Vehicle', key: 'secondaryVehicle', defaultAnswer: '2 Wheeler' },
+        { label: 'Fuel Type', key: 'secondaryVehicleFuelType' },
+        { label: 'Secondary Vehicle Number', key: 'secondaryVehicleNumber' },
+        { label: 'Secondary Vehicle Manufacturer', key: 'secondaryVehicleManufacturer' },
+        { label: 'Secondary Vehicle Model', key: 'secondaryVehicleModel' }
+      ] : []
+    }
+  ];
+
+  // Helper functions to extract values
+  const getAnswer = (sectionData, questionKey, defaultAnswer = "Yes") => {
+    return sectionData && sectionData[`${questionKey}-answer`] ? sectionData[`${questionKey}-answer`] : defaultAnswer;
+  };
+
+  const getRemark = (sectionData, questionKey) => {
+    return sectionData && sectionData[`${questionKey}-remark`] ? sectionData[`${questionKey}-remark`] : "No Remarks";
+  };
+
+  const getTextValue = (value, defaultValue = "Not Provided") => {
+    return value ? value : defaultValue;
+  };
+
+  // Iterate over each section and extract data
+  sections.forEach((section) => {
+    section.questions.forEach((question, index) => {
+      const questionText = typeof question === 'string' ? question : question.label;
+      const answer = typeof question === 'string'
+        ? getAnswer(section.data, index)
+        : getTextValue(section.data[question.key], question.defaultAnswer);
+
+      result[questionText] = answer;
+
+      // Add remarks for radio button questions if applicable
+      if (typeof question === 'string') {
+        result[`${questionText} Remarks`] = getRemark(section.data, index);
+      }
+    });
+
+    // Handle secondary questions if they exist
+    if (section.secondaryQuestions) {
+      section.secondaryQuestions.forEach((question) => {
+        const questionText = question.label;
+        const answer = getTextValue(section.data[question.key], question.defaultAnswer);
+        result[questionText] = answer;
+      });
+    }
+  });
+
+  return result;
+};
+
   
 
   const handleSubmit = () => {
     // submitToGoogleSheets(formData); 
+    console.log("formData on submission :", JSON.stringify(formData));
+    var changedData = prepareDataForGoogleSheets(formData);
+
+    console.log("changedData =:", JSON.stringify(changedData));
+    console.log("changedData witthout stringify:", changedData);
   
     // Convert formData to a readable format for email body
     const formatFormDataForEmail = (data) => {

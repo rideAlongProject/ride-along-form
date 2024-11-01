@@ -5,21 +5,21 @@ import NavigationSteps from './NavigationSteps';
 
 const RiderAssessment = ({ formData, handleFormChange, onNext, onPrevious }) => {
   const questions = [
-    "Does the rider use hand signal/indicator while taking a turn?",
-    "Does the rider overtake from the correct side?",
-    "Does the rider wear shoes with a well-defined heel while riding?",
-    "Is the rider sleepy while riding?",
-    "Does the rider stop at traffic signals?",
-    "Does the rider use a mobile phone while riding?",
-    "Does the rider follow legal speed limits?",
-    "Is the rider’s sitting posture correct? Check the position of hands, elbows, knees, and thighs.",
-    "Does the rider make way for an ambulance?",
-    "Is the rider courteous to other road users?",
-    "Has the rider attended the Safe Rider Programme? Date:",
-    "Does the rider wear an AZ Helmet with the strap buckled?",
-    "Is the helmet in good condition?",
-    "Does the rider wear an AZ Jacket?",
-    "Is the jacket in good condition?"
+    "1. Does the rider use hand signal/indicator while taking a turn?",
+    "2. Does the rider overtake from the correct side?",
+    "3. Does the rider wear shoes with a well-defined heel while riding?",
+    "4. Is the rider sleepy while riding?",
+    "5. Does the rider stop at traffic signals?",
+    "6. Does the rider use a mobile phone while riding?",
+    "7. Does the rider follow legal speed limits?",
+    "8. Is the rider’s sitting posture correct? Check the position of hands, elbows, knees, and thighs.",
+    "9. Does the rider make way for an ambulance?",
+    "10. Is the rider courteous to other road users?",
+    "11. Has the rider attended the Safe Rider Programme? Date:",
+    "12. Does the rider wear an AZ Helmet with the strap buckled?",
+    "13. Is the helmet in good condition?",
+    "14. Does the rider wear an AZ Jacket?",
+    "15. Is the jacket in good condition?"
   ];
 
   useEffect(() => {

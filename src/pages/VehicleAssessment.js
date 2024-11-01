@@ -9,18 +9,18 @@ const VehicleAssessment = ({ formData, handleFormChange, onNext, onPrevious }) =
   const [showAlerts, setShowAlerts] = useState(false);
 
   const questions = [
-    "Is the Vehicle Tyre Pressure correct? Instruct the employee to check tyre pressure at a fuel station and ensure the air is filled according to the manufacturer’s instructions.",
-    "How is the treading condition of the tyres? Are there any cuts?",
-    "Is the speedometer functioning properly?",
-    "Is the fuel meter functioning properly?",
-    "Are both mirrors present? Is it positioned properly as per rider's eye line?",
-    "Do the front and rear brakes function properly?",
-    "Is the horn functioning properly?",
-    "Is the auto/kick starter functioning properly?",
-    "Is the vehicle key in good condition? Check for any bend or rust.",
-    "How is the seat condition of the vehicle? Is there any damage/cuts?",
-    "Is the main stand & side stand functioning properly?",
-    "Are the number plates of the vehicle clearly visible?",
+    "1. Is the Vehicle Tyre Pressure correct? Instruct the employee to check tyre pressure at a fuel station and ensure the air is filled according to the manufacturer’s instructions.",
+    "2. How is the treading condition of the tyres? Are there any cuts?",
+    "3. Is the speedometer functioning properly?",
+    "4. Is the fuel meter functioning properly?",
+    "5. Are both mirrors present? Is it positioned properly as per rider's eye line?",
+    "6. Do the front and rear brakes function properly?",
+    "7. Is the horn functioning properly?",
+    "8. Is the auto/kick starter functioning properly?",
+    "9. Is the vehicle key in good condition? Check for any bend or rust.",
+    "10. How is the seat condition of the vehicle? Is there any damage/cuts?",
+    "11. Is the main stand & side stand functioning properly?",
+    "12. Are the number plates of the vehicle clearly visible?",
   ];
 
   useEffect(() => {
