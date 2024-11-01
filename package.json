@@ -2,7 +2,7 @@
   "name": "ride-along-form",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rideAlongProject.github.io/ride-along-form/",
+  "homepage": "https://ride-along-form.in",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
