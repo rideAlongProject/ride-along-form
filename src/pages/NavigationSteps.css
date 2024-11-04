@@ -17,7 +17,7 @@
 }
 
 .step.active {
-  background-color: purple; /* Purple background for active step */
+  background-color: #cedb28; /* background for active step */
   color: white; /* White text for active step */
 }
 

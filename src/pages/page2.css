@@ -55,7 +55,7 @@ body {
 }
 
 .assessment-table thead th {
-  background-color: purple;
+  background-color: #cedb28;
   color: white;
   font-weight: bold;
   border: 2px solid #000;
@@ -88,7 +88,7 @@ body {
 /* Button Styling */
 .start-form-btn {
   padding: 12px 24px;
-  background-color: purple;
+  background-color: #cedb28;
   color: white;
   border: none;
   border-radius: 10px;

@@ -19,32 +19,57 @@ const ReviewPage = ({ formData, onNext, onPrevious }) => {
   };
 
   const submitToGoogleSheets = async (formData) => {
-    const url = "https://script.google.com/macros/s/AKfycbwCv_5DzGXhLlOlqx7BPZXDCJNv39sePV5WpKa1LPrJboFBs6ZKw9ivYW2wD7mTnWpz/exec";
-    console.log("formData in googleSheets:", formData);
-
+    const url = 'http://localhost:5000/submit-to-sheets'; // URL of your Express backend
   
     try {
       const response = await fetch(url, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        mode: "no-cors",
-        body: JSON.stringify(formData), // Send the formData as the body
+        body: JSON.stringify(formData),
       });
   
       const result = await response.json();
-      console.log("result in google sheets :", result);
-      if (result.status === "success") {
-        alert("Form submitted successfully to Google Sheets!");
+      if (result.status === 'success') {
+        alert('Form submitted successfully to Google Sheets!');
       } else {
-        alert("Error submitting form: " + result.message);
+        alert('Error submitting form.');
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("An error occurred while submitting the form.");
+      console.error('Error:', error);
+      alert('An error occurred while submitting the form.');
     }
   };
+  
+
+  // const submitToGoogleSheets = async (formData) => {
+  //   const url = "https://script.google.com/macros/s/AKfycbwCv_5DzGXhLlOlqx7BPZXDCJNv39sePV5WpKa1LPrJboFBs6ZKw9ivYW2wD7mTnWpz/exec";
+  //   console.log("formData in googleSheets:", formData);
+
+  
+  //   try {
+  //     const response = await fetch(url, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       mode: "no-cors",
+  //       body: JSON.stringify(formData), // Send the formData as the body
+  //     });
+  
+  //     const result = await response.json();
+  //     console.log("result in google sheets :", result);
+  //     if (result.status === "success") {
+  //       alert("Form submitted successfully to Google Sheets!");
+  //     } else {
+  //       alert("Error submitting form: " + result.message);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error submitting form:", error);
+  //     alert("An error occurred while submitting the form.");
+  //   }
+  // };
   
 
   // Define sections and questions dynamically
@@ -178,7 +203,6 @@ const ReviewPage = ({ formData, onNext, onPrevious }) => {
     doc.save('review-submission.pdf'); // Save and download the PDF
   };
 
-  // Utility function to process formData and generate a key-value object
 const prepareDataForGoogleSheets = (formData) => {
   const result = {};
 
@@ -275,13 +299,11 @@ const prepareDataForGoogleSheets = (formData) => {
       const answer = typeof question === 'string'
         ? getAnswer(section.data, index)
         : getTextValue(section.data[question.key], question.defaultAnswer);
+      const remark = typeof question === 'string'
+        ? getRemark(section.data, index)
+        : "No Remarks";
 
-      result[questionText] = answer;
-
-      // Add remarks for radio button questions if applicable
-      if (typeof question === 'string') {
-        result[`${questionText} Remarks`] = getRemark(section.data, index);
-      }
+      result[questionText] = `${answer}, Remarks: ${remark}`;
     });
 
     // Handle secondary questions if they exist
@@ -297,65 +319,65 @@ const prepareDataForGoogleSheets = (formData) => {
   return result;
 };
 
+
   
 
   const handleSubmit = () => {
-    // submitToGoogleSheets(formData); 
-    console.log("formData on submission :", JSON.stringify(formData));
-    var changedData = prepareDataForGoogleSheets(formData);
 
-    console.log("changedData =:", JSON.stringify(changedData));
-    console.log("changedData witthout stringify:", changedData);
-  
+    var changedData = prepareDataForGoogleSheets(formData);
+    console.log("final Payload for sheets =:", JSON.stringify(changedData));
+
+    submitToGoogleSheets(changedData); 
+ 
     // Convert formData to a readable format for email body
-    const formatFormDataForEmail = (data) => {
-      let emailBody = '';
+    // const formatFormDataForEmail = (data) => {
+    //   let emailBody = '';
   
-      // Format mandatory fields
-      emailBody += `Name: ${data.name || 'Not provided'}\n`;
-      emailBody += `Date: ${data.date || 'Not provided'}\n`;
-      emailBody += `HQ: ${data.hq || 'Not provided'}\n`;
-      emailBody += `Team: ${data.team || 'Not provided'}\n`;
-      emailBody += `Line Man: ${data.lineMan || 'Not provided'}\n`;
-      emailBody += `Are you a new joinee?: ${data.newJoinee || 'No'}\n\n`;
+    //   // Format mandatory fields
+    //   emailBody += `Name: ${data.name || 'Not provided'}\n`;
+    //   emailBody += `Date: ${data.date || 'Not provided'}\n`;
+    //   emailBody += `HQ: ${data.hq || 'Not provided'}\n`;
+    //   emailBody += `Team: ${data.team || 'Not provided'}\n`;
+    //   emailBody += `Line Man: ${data.lineMan || 'Not provided'}\n`;
+    //   emailBody += `Are you a new joinee?: ${data.newJoinee || 'No'}\n\n`;
   
-      // Format Vehicle Assessment
-      emailBody += 'Vehicle Assessment:\n';
-      Object.keys(data.vehicleAssessment || {}).forEach((key, index) => {
-        emailBody += `Question ${index + 1}: ${data.vehicleAssessment[key]} \n`;
-      });
-      emailBody += '\n';
+    //   // Format Vehicle Assessment
+    //   emailBody += 'Vehicle Assessment:\n';
+    //   Object.keys(data.vehicleAssessment || {}).forEach((key, index) => {
+    //     emailBody += `Question ${index + 1}: ${data.vehicleAssessment[key]} \n`;
+    //   });
+    //   emailBody += '\n';
   
-      // Format Rider Assessment
-      emailBody += 'Rider Assessment:\n';
-      Object.keys(data.riderAssessment || {}).forEach((key, index) => {
-        emailBody += `Question ${index + 1}: ${data.riderAssessment[key]} \n`;
-      });
-      emailBody += '\n';
+    //   // Format Rider Assessment
+    //   emailBody += 'Rider Assessment:\n';
+    //   Object.keys(data.riderAssessment || {}).forEach((key, index) => {
+    //     emailBody += `Question ${index + 1}: ${data.riderAssessment[key]} \n`;
+    //   });
+    //   emailBody += '\n';
   
-      // Format Vehicle Details
-      emailBody += 'Vehicle Details:\n';
-      emailBody += `Primary Vehicle Number: ${data.vehicleDetails?.primaryVehicleNumber || 'Not provided'}\n`;
-      emailBody += `Primary Vehicle Manufacturer: ${data.vehicleDetails?.primaryVehicleManufacturer || 'Not provided'}\n`;
-      emailBody += `Primary Vehicle Model: ${data.vehicleDetails?.primaryVehicleModel || 'Not provided'}\n`;
-      emailBody += `Do you use a secondary vehicle?: ${data.vehicleDetails?.useSecondaryVehicle || 'No'}\n\n`;
+    //   // Format Vehicle Details
+    //   emailBody += 'Vehicle Details:\n';
+    //   emailBody += `Primary Vehicle Number: ${data.vehicleDetails?.primaryVehicleNumber || 'Not provided'}\n`;
+    //   emailBody += `Primary Vehicle Manufacturer: ${data.vehicleDetails?.primaryVehicleManufacturer || 'Not provided'}\n`;
+    //   emailBody += `Primary Vehicle Model: ${data.vehicleDetails?.primaryVehicleModel || 'Not provided'}\n`;
+    //   emailBody += `Do you use a secondary vehicle?: ${data.vehicleDetails?.useSecondaryVehicle || 'No'}\n\n`;
   
-      if (data.vehicleDetails?.useSecondaryVehicle === 'Yes') {
-        emailBody += 'Secondary Vehicle Details:\n';
-        emailBody += `Secondary Vehicle Number: ${data.vehicleDetails?.secondaryVehicleNumber || 'Not provided'}\n`;
-        emailBody += `Secondary Vehicle Manufacturer: ${data.vehicleDetails?.secondaryVehicleManufacturer || 'Not provided'}\n`;
-        emailBody += `Secondary Vehicle Model: ${data.vehicleDetails?.secondaryVehicleModel || 'Not provided'}\n`;
-      }
+    //   if (data.vehicleDetails?.useSecondaryVehicle === 'Yes') {
+    //     emailBody += 'Secondary Vehicle Details:\n';
+    //     emailBody += `Secondary Vehicle Number: ${data.vehicleDetails?.secondaryVehicleNumber || 'Not provided'}\n`;
+    //     emailBody += `Secondary Vehicle Manufacturer: ${data.vehicleDetails?.secondaryVehicleManufacturer || 'Not provided'}\n`;
+    //     emailBody += `Secondary Vehicle Model: ${data.vehicleDetails?.secondaryVehicleModel || 'Not provided'}\n`;
+    //   }
   
-      return emailBody;
-    };
+    //   return emailBody;
+    // };
   
     // Generate readable formData for the email body
-    const emailBody = encodeURIComponent(formatFormDataForEmail(formData)); // URL encode the body content
+    // const emailBody = encodeURIComponent(formatFormDataForEmail(formData)); // URL encode the body content
   
     // Proceed with the mailto and PDF submission logic
-    const mailToLink = `mailto:akhilxtel@gmail.com?subject=Ride Along Form Submission&body=${emailBody}`;
-    window.location.href = mailToLink; // This will open the default email client with the populated body
+    // const mailToLink = `mailto:akhilxtel@gmail.com?subject=Ride Along Form Submission&body=${emailBody}`;
+    // window.location.href = mailToLink; // This will open the default email client with the populated body
     onNext();
   };
   

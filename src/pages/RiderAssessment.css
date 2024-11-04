@@ -21,7 +21,7 @@ h1 {
 }
 
 .main-heading{
-  color: purple;
+  color: #cedb28;
   font-size: 2.0em;
 }
 
@@ -93,20 +93,20 @@ textarea {
 
 /* Previous button with red background and black hover */
 .btn-previous {
-  background-color: orange; /* Red theme */
+  background-color: orange; /* Orange theme */
 }
 
 .btn-previous:hover {
-  background-color: orange; /* Darker red on hover */
+  background-color: orange; /* orange on hover */
 }
 
 /* Next button with black background and red hover */
 .btn-next {
-  background-color: purple; /* Black theme */
+  background-color: #cedb28; 
 }
 
 .btn-next:hover {
-  background-color: purple; /* Red on hover */
+  background-color: #cedb28; /* Red on hover */
 }
 
 .btn-next:disabled {
