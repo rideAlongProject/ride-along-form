@@ -24,6 +24,9 @@ h1 {
 .main-heading{
   color: #cedb28;
   font-size: 2.0em;
+  padding: 10px; 
+  border: 2px solid #ddd; /* Border with subtle color */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Watermark Styling */
@@ -128,7 +131,7 @@ input[type="radio"] {
   font-size: 1rem;
   cursor: pointer;
   margin-right: 1rem;
-  color: white;
+  color: black;
   transition: background-color 0.3s ease;
 }
 

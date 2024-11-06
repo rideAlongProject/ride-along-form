@@ -247,14 +247,16 @@ const VehicleDetails = ({ formData, handleFormChange, onNext, onPrevious }) => {
           {formSubmitted && !isCheckboxChecked && <p className="checkbox-alert">Please tick the checkbox</p>}
         </div>
 
-        <button type="button" onClick={onPrevious} className="btn btn-previous">Previous</button>
-        <button
-          type="button"
-          onClick={handleSubmit}
-          className="btn btn-next"
-        >
-          Submit and Preview
-        </button>
+        <div className="button-group">
+          <button type="button" onClick={onPrevious} className="btn btn-previous">Previous</button>
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className="btn btn-next"
+          >
+            Submit and Preview
+          </button>
+        </div>
       </form>
     </div>
   );

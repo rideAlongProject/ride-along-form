@@ -8,7 +8,7 @@ const Page2 = ({ onNext, onPrevious }) => {
     const tableContent = [
         {
           id: 1,
-          assessment: 'Is the Vehicle Tyre Pressure correct? Front Y/N ; Rear Y/N',
+          assessment: 'Is the Vehicle Tyre Pressure correct? ',
           guidelines: 'Instruct the employee to check tyre pressure at a fuel station and ensure the air is filled according to the manufacturer’s instructions.'
         },
         {
@@ -72,7 +72,7 @@ const Page2 = ({ onNext, onPrevious }) => {
   return (
     <div className="page2-container">
       <img src={waterMark} alt="Watermark" className="watermark" />  
-      <h1 className="form-heading">ASSESSMENT GUIDELINES</h1>
+      <h1 className="form-heading">VEHICLE ASSESSMENT GUIDELINES</h1>
       <table className="assessment-table">
         <thead>
           <tr>
@@ -91,9 +91,8 @@ const Page2 = ({ onNext, onPrevious }) => {
           ))}
         </tbody>
       </table>
-      {/* <button className="start-form-btn">Start Form</button> */}
       <button className="start-form-btn" onClick={onNext}>
-        Start Form
+        Next
       </button>
 
     </div>

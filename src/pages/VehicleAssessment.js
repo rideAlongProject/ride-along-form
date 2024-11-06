@@ -180,8 +180,11 @@ const VehicleAssessment = ({ formData, handleFormChange, onNext, onPrevious }) =
           </div>
         ))}
 
+      <div className="button-group">
         <button type="button" onClick={onPrevious} className="btn btn-previous">Previous</button>
         <button type="button" onClick={handleNext} className="btn btn-next">Next</button>
+      </div>
+      
       </form>
     </div>
   );

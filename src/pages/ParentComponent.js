@@ -3,10 +3,11 @@
 import React, { useState } from 'react';
 import Page1 from '../pages/page1';
 import Page2 from '../pages/page2';
+import RiderGuidelines from './riderGuidelines';
 import RiderAssessment from './RiderAssessment'; 
 import VehicleAssessment from './VehicleAssessment';
 import VehicleDetails from './VehicleDetails';
-import ReviewPage from './ReviewPage'; // Import the ReviewPage component
+import ReviewPage from './ReviewPage'; 
 import ThankYou from './ThankYou';
 
 const ParentComponent = () => {
@@ -45,10 +46,12 @@ const ParentComponent = () => {
     } else if (currentPage === 2) {
       setCurrentPage(currentPage + 1);
     } else if (currentPage === 3) {
-      setCurrentPage(currentPage + 1);  // Go to RiderAssessment
+      setCurrentPage(currentPage + 1);
     } else if (currentPage === 4) {
-      setCurrentPage(currentPage + 1);  // Go to VehicleDetails
+      setCurrentPage(currentPage + 1);  // Go to RiderAssessment
     } else if (currentPage === 5) {
+      setCurrentPage(currentPage + 1);  // Go to VehicleDetails
+    } else if (currentPage === 6) {
       setCurrentPage(currentPage + 1);  // Go to ReviewPage
     }
   };
@@ -58,46 +61,47 @@ const ParentComponent = () => {
   };
 
   const handlePreview = () => {
-    setCurrentPage(6); // Navigate to ReviewPage
+    setCurrentPage(7); // Navigate to ReviewPage
   };
 
   return (
     <div>
       {currentPage === 1 && <Page1 onNext={() => setCurrentPage(2)} />}
       {currentPage === 2 && <Page2 onNext={() => setCurrentPage(3)} onPrevious={() => setCurrentPage(1)} />}
-      {currentPage === 3 && (
+      {currentPage === 3 && <RiderGuidelines onNext={() => setCurrentPage(4)} onPrevious={() => setCurrentPage(2)} />}
+      {currentPage === 4 && (
         <VehicleAssessment 
           formData={formData} 
           handleFormChange={handleFormChange} 
-          onNext={() => setCurrentPage(4)}  // Link to RiderAssessment
+          onNext={() => setCurrentPage(5)}  // Link to RiderAssessment
           onPreview={handlePreview} // Link to ReviewPage
           onPrevious={goToPreviousPage} 
         />
       )}
-      {currentPage === 4 && (
+      {currentPage === 5 && (
         <RiderAssessment 
           formData={formData} 
           handleFormChange={handleFormChange} 
-          onNext={() => setCurrentPage(5)} 
-          onPrevious={() => setCurrentPage(3)}  // Link back to VehicleAssessment
+          onNext={() => setCurrentPage(6)} 
+          onPrevious={() => setCurrentPage(4)}  // Link back to VehicleAssessment
         />
       )}
-      {currentPage === 5 && (
+      {currentPage === 6 && (
         <VehicleDetails
           formData={formData}
           handleFormChange={handleFormChange}
           onNext={goToNextPage}
-          onPrevious={() => setCurrentPage(4)} // Link back to RiderAssessment
+          onPrevious={() => setCurrentPage(5)} // Link back to RiderAssessment
         />
       )}
-      {currentPage === 6 && (
+      {currentPage === 7 && (
         <ReviewPage
           formData={formData}
-          onPrevious={() => setCurrentPage(5)}
-          onNext={() => setCurrentPage(7)} // Link back to VehicleDetails
+          onPrevious={() => setCurrentPage(6)}
+          onNext={() => setCurrentPage(8)} // Link back to VehicleDetails
         />
       )}
-      {currentPage === 7 && <ThankYou/>} 
+      {currentPage === 8 && <ThankYou/>} 
     </div>
   );
 };
