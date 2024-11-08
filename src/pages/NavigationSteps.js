@@ -9,7 +9,7 @@ const NavigationSteps = ({ currentStep }) => {
         Vehicle Assessment
       </div>
       <div className={`step ${currentStep === 'riderAssessment' ? 'active' : 'inactive'}`}>
-        Rider Assessment
+        Rider Safety
       </div>
       <div className={`step ${currentStep === 'vehicleDetails' ? 'active' : 'inactive'}`}>
         Vehicle Details

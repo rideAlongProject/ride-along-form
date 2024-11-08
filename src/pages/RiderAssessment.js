@@ -78,7 +78,7 @@ const RiderAssessment = ({ formData, handleFormChange, onNext, onPrevious }) => 
                 value={formData.riderAssessment[`${index}-remark`] || ''}
                 onChange={(e) => handleChange(e, index, 'remark')}
                 maxLength="175"
-                placeholder="Remark..."
+                placeholder="Remarks..."
               />
             </div>
           </div>

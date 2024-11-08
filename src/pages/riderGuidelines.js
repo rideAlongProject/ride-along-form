@@ -3,26 +3,6 @@ import './riderGuidelines.css';
 import waterMark from '../assets/waterMark.png';
 
 
-// main-heading {
-//     color: #cedb28;
-//     font-size: 2.0em;
-//     border: 1px solid black;
-//     border-radius: 12px;
-//     max-width: 83%;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     margin-left: 10%;
-//     padding: 12px;
-// }
-
-
-// btn-previous {
-//     background-color: orange;
-//     display: unset;
-//     justify-content: center;
-//     align-items: center;
-//     margin-left: calc(51% - 167px);
 const RiderGuidelines = ({ onNext, onPrevious }) => {
     const tableContent = [
         {

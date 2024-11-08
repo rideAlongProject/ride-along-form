@@ -6,7 +6,6 @@
   max-width: 1000px;
   margin: 0 auto;
   margin-bottom: 30px;
-
   border: 5px solid black; /* Thicker red outer border */
   padding: 15px;
   border-radius: 10px;
@@ -23,6 +22,7 @@ h1 {
 .main-heading{
   color: #cedb28;
   font-size: 2.0em;
+  text-shadow: 1px 1px 0px black;
 }
 
 /* Updated styling for question container (no box or background) */
