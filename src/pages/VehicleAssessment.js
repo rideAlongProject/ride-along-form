@@ -174,7 +174,7 @@ const VehicleAssessment = ({ formData, handleFormChange, onNext, onPrevious }) =
                 value={formData.vehicleAssessment[`${index}-remark`] || ''}
                 onChange={(e) => handleChange(e, index, 'remark')}
                 maxLength="175"
-                placeholder="Remark..."
+                placeholder="Remarks..."
               />
             </div>
           </div>
