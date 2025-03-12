@@ -13,7 +13,7 @@ import ThankYou from './ThankYou';
 const ParentComponent = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [formData, setFormData] = useState({
-    date: '',
+    date: new Date().toLocaleDateString('en-GB'),
     hq: '',
     name: '',
     team: '',

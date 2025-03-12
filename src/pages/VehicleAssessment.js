@@ -84,7 +84,7 @@ const VehicleAssessment = ({ formData, handleFormChange, onNext, onPrevious }) =
       </div>
       <form>
         <div className="input-container">
-          <div className="form-group">
+          {/* <div className="form-group">
             <label>Date:</label>
             <input
               type="date"
@@ -94,7 +94,7 @@ const VehicleAssessment = ({ formData, handleFormChange, onNext, onPrevious }) =
               required
             />
             {showAlerts && !formData.date && <span className="alert">This field is mandatory</span>}
-          </div>
+          </div> */}
           <div className="form-group">
             <label>HQ:</label>
             <input

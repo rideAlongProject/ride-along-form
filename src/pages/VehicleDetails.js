@@ -5,7 +5,7 @@ import watermark from '../assets/waterMark.png';
 
 const VehicleDetails = ({ formData, handleFormChange, onNext, onPrevious }) => {
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
-  const [showSecondaryVehicle, setShowSecondaryVehicle] = useState(formData.vehicleDetails.useSecondaryVehicle === 'Yes');
+  const [showSecondaryVehicle, setShowSecondaryVehicle] = useState(formData.vehicleDetails.useSecondaryVehicle === 'No');
   const [formSubmitted, setFormSubmitted] = useState(false); // Track if form is submitted
   const [fuelTypeOptions, setFuelTypeOptions] = useState(['Petrol', 'EV']); // State to manage primary vehicle fuel options
   const [secondaryFuelTypeOptions, setSecondaryFuelTypeOptions] = useState(['Petrol', 'EV']); // State to manage secondary vehicle fuel options
@@ -54,6 +54,14 @@ const VehicleDetails = ({ formData, handleFormChange, onNext, onPrevious }) => {
     // Set default for primary vehicle if not already set
     if (!formData.vehicleDetails.primaryVehicle) {
       handleFormChange('vehicleDetails', 'primaryVehicle', '2 Wheeler');
+    }
+
+     // Set "useSecondaryVehicle" to "Yes" by default
+    if (!formData.vehicleDetails.useSecondaryVehicle) {
+      handleFormChange('vehicleDetails', 'useSecondaryVehicle', 'Yes');
+      setShowSecondaryVehicle(true); // Ensure the dependent form is visible
+    } else {
+      setShowSecondaryVehicle(formData.vehicleDetails.useSecondaryVehicle === 'Yes');
     }
 
     // Set default for secondary vehicle if not already set
@@ -108,7 +116,7 @@ const VehicleDetails = ({ formData, handleFormChange, onNext, onPrevious }) => {
       name: 'primaryVehicleModel',
     },
     {
-      label: 'Do you use a Secondary Vehicle for field of work?',
+      label: 'Do you use a Secondary Vehicle for field work?',
       type: 'radio',
       name: 'useSecondaryVehicle',
       options: ['Yes', 'No'],

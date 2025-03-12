@@ -32,7 +32,7 @@ const ReviewPage = ({ formData, onNext, onPrevious }) => {
   
       const result = await response.json();
       if (result.status === 'success') {
-        alert('Form submitted successfully to Google Sheets!');
+        alert('Form submitted successfully ');
       } else {
         alert('Error submitting form.');
       }
