@@ -95,7 +95,7 @@ const VehicleDetails = ({ formData, handleFormChange, onNext, onPrevious }) => {
       options: ['2 Wheeler', '4 Wheeler'],
     },
     {
-      label: 'Fuel Type',
+      label: 'Primary Vehicle Fuel Type',
       type: 'dropdown',
       name: 'fuelType',
       options: fuelTypeOptions, // Use the dynamically updated fuel type options
@@ -131,7 +131,7 @@ const VehicleDetails = ({ formData, handleFormChange, onNext, onPrevious }) => {
       options: ['2 Wheeler', '4 Wheeler'],
     },
     {
-      label: 'Fuel Type',
+      label: 'Secondary Vehicle Fuel Type',
       type: 'dropdown',
       name: 'secondaryVehicleFuelType',
       options: secondaryFuelTypeOptions, // Use dynamically updated secondary vehicle fuel type options
