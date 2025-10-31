@@ -31,6 +31,7 @@ const ReviewPage = ({ formData, onNext, onPrevious }) => {
       }); 
   
       const result = await response.json();
+      console.log("result : testing :", result);
       if (result.status === 'success') {
         alert('Form submitted successfully ');
       } else {
