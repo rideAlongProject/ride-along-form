@@ -32,7 +32,7 @@ const ReviewPage = ({ formData, onNext, onPrevious }) => {
   
       const result = await response.json();
       console.log("result : testing :", result);
-      if (result.status === 'success') {
+      if (result.result === 'success') {
         alert('Form submitted successfully ');
       } else {
         alert('Error submitting form.');
